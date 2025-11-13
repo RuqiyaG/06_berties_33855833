@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Books We Have at <%=shopData.shopName%></h1>
-    <p>Brighton Rock</p>
+    <!-- <p>Brighton Rock</p>
     <br>
     <p>Brave New World</p>
     <br>
@@ -19,8 +19,11 @@
     <p>Wheel of Time</p>
     <br>
     <br>
-    <p>Homo Sapiens</p>
-    <!-- <%  %>
-    <%=  %> -->
+    <p>Homo Sapiens</p> -->
+    <% for(let i = 0; i < availableBooks.length; i++){ %>
+    <li><%= availableBooks[i].name %> --
+        £<%= availableBooks[i].price.toFixed(2) %>
+    </li>
+    <% } %>
 </body>
 </html>
