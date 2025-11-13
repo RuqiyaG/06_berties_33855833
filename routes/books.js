@@ -9,7 +9,7 @@ router.get('/list', function(req, res, next) {
     if(err) {
         next(err)
     }
-    res.send("list.ejs",{availableBooks:result})
+    res.render("list.ejs",{availableBooks:result})
   });
 });
 
