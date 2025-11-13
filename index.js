@@ -21,9 +21,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.locals.shopData = {shopName: "Bertie's Books"}
 
 const db = mysql.createPool({
-    host: 'local host',
+    host: 'localhost',
     user: 'berties_books_app',
     password: 'qwertyuiop',
+    database: 'berties_books',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
