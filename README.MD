@@ -1,11 +1,6 @@
 # Berties Books
+A web application using express,ejs and sql with differnt route handlers showing a home page,search page, about page, add books page, book list page and register page for the website that sells books and how to register , search and add books to our system/database. I started initialising the node project by using nmp init and then used npm install to install both express and ejs. Ejs allows you to add dynamic behaviour when making a html file you use .ejs not .html so you can include this dynamic tag <%= %> to embed javascrpt.When embedding make sure you define the variable you are using in your main,js file where the route handlers are otherwise there will be an error and the whole file with semantic tags will show on local host.
+Installed mysql on my computer locally and on the virtual server and created a database on there which I later connected to my code so that it can use it.
+To start this application locally you need to open up the terminal and input node index.js and the console should tell you its running on localhost:800 To view it on the virtual server/online just head over to my links file and click the links.
 
-Sample code for Dynamic Web Applications module.
-
-Uses node.js with Express and EJS.
-
-To install and run:
-
-npm install
-node index.js
 
