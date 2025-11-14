@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berties Books</title>
+    <link rel="stylesheet"  type="text/css" href="/main.css" />
+</head>
+<body>
+    <h1>Welcome to <%=shopData.shopName%></h1>
+    <p>Books We Have at <%=shopData.shopName%></p>
+    <!-- <p>Brighton Rock</p>
+    <br>
+    <p>Brave New World</p>
+    <br>
+    <br>
+    <p>Animal Farm</p>
+    <br>
+    <br>
+    <p>Wheel of Time</p>
+    <br>
+    <br>
+    <p>Homo Sapiens</p> -->
+
+
+<!-- 
+    using a for loop to go through all the list of data so that it shows up on the screen dynamically. -->
+    <% for(let i = 0; i < availableBooks.length; i++){ %>
+    <li><%= availableBooks[i].name %> --
+        £<%= availableBooks[i].price %>
+    </li>
+    <% } %>
+</body>
+</html>
