@@ -38,7 +38,7 @@ router.post('/bookadded', function(req, res, next) {
         if(err) {
             next(err)
         }
-        res.send('This book has been added:' + req.body.name)
+        res.send('This book has been added:' + req.body.name);
       });
 
 });
