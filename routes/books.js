@@ -6,6 +6,7 @@ const router = express.Router()
 router.get('/list', function(req, res, next) {
   let sqlquery = "SELECT * FROM books";
 
+  // inserts query into the databse
   db.query(sqlquery, (err, result) => {
     if(err) {
         next(err)
