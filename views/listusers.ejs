@@ -8,16 +8,13 @@
 </head>
 <body>
     <h1>List of Users at Berties</h1>
-
-    <ul>
-        <% for(let i = 0; i < users.length; i++){ %>
-        <li>
-            Username:<%= users[i].username %> --
-            First Name:<%= users[i].first %> --
-            Last Name:<%= users[i].last %> --
-            Email:<%= users[i].email %> 
-        </li>
-        <% } %>
-    </ul>
+    <% for(let i = 0; i < users.length; i++){ %>
+    <li>Username:<%= users[i].username %> --
+        First Name:<%= users[i].first %> --
+        Last Name:<%= users[i].last %> --
+        Email:<%= users[i].email %> 
+    </li>
+    <% } %>
+    
 </body>
 </html>
