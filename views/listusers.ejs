@@ -10,13 +10,12 @@
     <h1>List of Users</h1>
 
     <ul>
-       <% for(let i = 0; i < availableBooks.length; i++){ %>
+       <% for(let i = 0; i < users.length; i++){ %>
            <li>
             Username: <%= users[i].username %> --
             First Name: <%= users[i].first %> --
             Last Name: <%= users[i].last %> --
             Email: <%= users[i].email %> 
-
            </li>
         <% } %>
     </ul>
