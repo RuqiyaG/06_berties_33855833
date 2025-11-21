@@ -1,4 +1,4 @@
-// Create a new router
+// Create a new router and importing express and bcrypt so it can be used
 const express = require("express")
 const router = express.Router()
 const bcrypt = require("bcrypt")
@@ -40,5 +40,18 @@ router.post('/registered', function (req, res, next) {
     //res.send(' Hello '+ req.body.first + ' '+ req.body.last +' you are now registered!  We will send an email to you at ' + req.body.email);                                                                            
 }); 
 
+router.get('/listusers', function (req, res, next) {
+    // left out hashed password so it is not retrievd
+    let sqlquery = "SELECT id, username, first, last, email FROM users";
+
+    // inserts query
+    db.query(sqlquery, (err, result) => {
+        if (err) {
+            next(err)
+        }
+        res.render("listuser.ejs", {users: result});
+    });
+
+});
 // Export the router object so index.js can access it
 module.exports = router
