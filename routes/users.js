@@ -6,7 +6,7 @@ const saltRounds = 10
 
 router.get('/register', function (req, res, next) {
     res.render('register.ejs')
-})
+});
 
 router.post('/registered', function (req, res, next) {
     //
@@ -50,6 +50,40 @@ router.get('/listusers', function (req, res, next) {
             next(err)
         }
         res.render("listuser.ejs", {users: result});
+    });
+
+});
+
+router.get('/login', function(req, res, next) {
+    res.render("login.ejs")
+});
+
+
+router.post('/loggedin', function(req, res, next) {
+    const plainPassword = req.body.password;
+    const username = req.body.username;
+
+    let sqlquery = "SELECT hashedPassword FROM users where username = ?";
+    db.query(sqlquery, [username], (err, result) => {
+        if(err) {
+            next(err)
+        }
+        if (!result[0]) {
+            res.send("LOgin unsuccessful: User not found");
+        }
+        let hashedPassword = result[0].hashedPassword
+        bcrypt.compare(req.body.password, hashedPassword, function(err, result) {
+            if (err) {
+              next(err)
+            }
+            else if (result == true) {
+              res.send("LOg in successful!!!!")
+            }
+            else {
+              res.send("LOg in unsuccessful: Incorrect Password")
+            }
+          });
+
     });
 
 });
