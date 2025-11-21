@@ -49,9 +49,8 @@ router.get('/listusers', function (req, res, next) {
         if (err) {
             next(err)
         }
-        res.render("listusers.ejs", {users: result});
+        res.render("listusers.ejs",{users:result});
     });
-
 });
 
 router.get('/login', function(req, res, next) {
