@@ -29,7 +29,7 @@ router.post('/registered', function (req, res, next) {
             }
             // message that will show up in browser to show that you are successful.
             let response = ' Hello '+ req.body.first + ' '+ req.body.last +' you are now registered!  We will send an email to you at ' + req.body.email
-            response += 'Your password is:'+ req.body.password + 'and your hashed password is:'+ hashedPassword
+            response += 'Your password is:'+ " " + req.body.password +  'and your hashed password is:'+ " " + hashedPassword
 
             res.send(response) 
         });
