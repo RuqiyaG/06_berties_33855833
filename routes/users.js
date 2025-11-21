@@ -49,13 +49,13 @@ router.get('/listusers', function (req, res, next) {
         if (err) {
             next(err)
         }
-        res.render("listuser.ejs", {users: result});
+        res.render("listusers.ejs", {users: result});
     });
 
 });
 
 router.get('/login', function(req, res, next) {
-    res.render("login.ejs")
+    res.render("login.ejs");
 });
 
 
