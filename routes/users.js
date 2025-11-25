@@ -7,7 +7,7 @@ const saltRounds = 10
 // redirects to log in page
 const redirectLogin = (req, res, next) => {
     if(!req.session.userID) {
-        res.redirect('./login') 
+        res.redirect('users/login') 
     } else {
         next ();
     }
@@ -80,12 +80,12 @@ router.post('/loggedin', function(req, res, next) {
             res.send("LOgin unsuccessful: User not found");
         }
         let hashedPassword = result[0].hashedPassword
-        bcrypt.compare(req.body.password, hashedPassword, function(err, result) {
+        bcrypt.compare(req.body.password, hashedPassword, function(err, isMatch) {
             if (err) {
               next(err)
             }
-            else if (result == true) {
-                req.session.userID = username
+            else if (isMatch) {              //result == true
+              req.session.userID = username 
               res.send("LOg in successful!!!!")
             }
             else {
