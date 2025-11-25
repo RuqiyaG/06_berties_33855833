@@ -4,6 +4,14 @@ const router = express.Router()
 const bcrypt = require("bcrypt")
 const saltRounds = 10
 
+const redirectLogin = (req, res, next) => {
+    if(!req.session.userID) {
+        res.redirect('./login') // redirect to login page
+    } else {
+        next ();
+    }
+}
+
 router.get('/register', function (req, res, next) {
     res.render('register.ejs')
 });
@@ -76,6 +84,7 @@ router.post('/loggedin', function(req, res, next) {
               next(err)
             }
             else if (result == true) {
+                req.session.userID = username
               res.send("LOg in successful!!!!")
             }
             else {
@@ -86,5 +95,8 @@ router.post('/loggedin', function(req, res, next) {
     });
 
 });
+
+
+
 // Export the router object so index.js can access it
 module.exports = router

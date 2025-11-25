@@ -1,8 +1,9 @@
-// Import express and ejs
+// Import express, ejs, sql, express session
 var express = require ('express')
 var ejs = require('ejs')
 const path = require('path')
 var mysql = require('mysql2');
+var session = require('express-sesion')
 
 // Create the express application object
 const app = express()
@@ -42,6 +43,16 @@ app.use('/users', usersRoutes)
 // Load the route handlers for /books
 const booksRoutes = require('./routes/books')
 app.use('/books', booksRoutes)
+
+//creating session
+app.use(session({
+    secret: 'somerandomstuff',
+    resave: false,
+    saveUninitalized: false,
+    cookie: {
+        expires: 600000
+    }
+}))
 
 // Start the web app listening
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
