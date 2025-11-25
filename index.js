@@ -48,7 +48,7 @@ app.use('/books', booksRoutes)
 app.use(session({
     secret: 'somerandomstuff',
     resave: false,
-    saveUninitalized: false,
+    saveUninitialized: false,
     cookie: {
         expires: 600000
     }
