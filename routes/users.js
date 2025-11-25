@@ -4,9 +4,10 @@ const router = express.Router()
 const bcrypt = require("bcrypt")
 const saltRounds = 10
 
+// redirects to log in page
 const redirectLogin = (req, res, next) => {
     if(!req.session.userID) {
-        res.redirect('./login') // redirect to login page
+        res.redirect('./login') 
     } else {
         next ();
     }
