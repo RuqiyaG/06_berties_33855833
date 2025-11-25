@@ -3,7 +3,7 @@ const { name } = require("ejs");
 const express = require("express")
 const router = express.Router()
 
-router.get('/list', function(req, res, next) {
+router.get('/list', redirectLogin, function(req, res, next) {
   let sqlquery = "SELECT * FROM books";
 
   // inserts query into the databse
@@ -15,7 +15,7 @@ router.get('/list', function(req, res, next) {
   });
 });
 
-router.get('/search',function(req, res, next){
+router.get('/search', redirectLogin, function(req, res, next){
     res.render("search.ejs")
 });
 
@@ -25,7 +25,7 @@ router.get('/search-result', function (req, res, next) {
 });
 
 //new route for adding books
-router.get('/addbook', function(req, res, next) {
+router.get('/addbook', redirectLogin, function(req, res, next) {
     res.render("addbook.ejs");
 });
 

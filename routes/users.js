@@ -48,7 +48,7 @@ router.post('/registered', function (req, res, next) {
     //res.send(' Hello '+ req.body.first + ' '+ req.body.last +' you are now registered!  We will send an email to you at ' + req.body.email);                                                                            
 }); 
 
-router.get('/listusers', function (req, res, next) {
+router.get('/listusers', redirectLogin, function (req, res, next) {
     // left out hashed password so it is not retrievd
     let sqlquery = "SELECT id, username, first, last, email FROM users";
 
