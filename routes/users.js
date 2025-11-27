@@ -6,7 +6,7 @@ const saltRounds = 10
 
 // redirects to log in page
 const redirectLogin = (req, res, next) => {
-    if(!req.session.userID) {
+    if(!req.session.userId) {
         res.redirect('/users/login') 
     } else {
         next ();
@@ -26,7 +26,7 @@ router.post('/registered',
     
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        res.render('register.ejs')
+        return res.render('register.ejs')
     }
     else {
         const plainPassword = req.body.password;
@@ -44,7 +44,7 @@ router.post('/registered',
            // inserts the query into the database
            db.query(sqlquery, usrInfo, (err, result) => {
             if(err) {
-                next(err)
+               return next(err)
             }
             // message that will show up in browser to show successful.
             let response = ' Hello '+ req.body.first + ' '+ req.body.last +' you are now registered!  We will send an email to you at ' + req.body.email
@@ -115,12 +115,12 @@ router.post('/loggedin', function(req, res, next) {
             next(err)
         }
         if (!result[0]) {
-            res.send("LOgin unsuccessful: User not found");
+            return res.send("LOgin unsuccessful: User not found");
         }
         let hashedPassword = result[0].hashedPassword
         bcrypt.compare(req.body.password, hashedPassword, function(err, isMatch) {
             if (err) {
-              next(err)
+              return next(err)
             }
             else if (isMatch) {              //result == true
               req.session.userId = username 
