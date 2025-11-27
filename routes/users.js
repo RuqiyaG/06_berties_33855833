@@ -7,7 +7,7 @@ const saltRounds = 10
 // redirects to log in page
 const redirectLogin = (req, res, next) => {
     if(!req.session.userID) {
-        res.redirect('users/login') 
+        res.redirect('/users/login') 
     } else {
         next ();
     }
@@ -21,12 +21,12 @@ router.get('/register', function (req, res, next) {
 
 router.post('/registered', 
     [check('email').isEmail(), 
-    check('username'.isLength({min: 5, max: 20}))], 
+    check('username').isLength({min: 5, max: 20})], 
     function (req, res, next) {
     
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        res.render('users/register')
+        res.render('register.ejs')
     }
     else {
         const plainPassword = req.body.password;
@@ -46,14 +46,15 @@ router.post('/registered',
             if(err) {
                 next(err)
             }
-            // message that will show up in browser to show that you are successful.
+            // message that will show up in browser to show successful.
             let response = ' Hello '+ req.body.first + ' '+ req.body.last +' you are now registered!  We will send an email to you at ' + req.body.email
             response += 'Your password is:'+ " " + req.body.password +  'and your hashed password is:'+ " " + hashedPassword
 
             res.send(response) 
         });
-     }
+     })
     }
+
 
     //
     // const plainPassword = req.body.password;
@@ -122,7 +123,7 @@ router.post('/loggedin', function(req, res, next) {
               next(err)
             }
             else if (isMatch) {              //result == true
-              req.session.userID = username 
+              req.session.userId = username 
               res.send("LOg in successful!!!!")
             }
             else {
