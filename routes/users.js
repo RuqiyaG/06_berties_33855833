@@ -31,9 +31,9 @@ router.post('/registered',
     else {
         const plainPassword = req.body.password;
         const username = req.body.username;
-        const first = req.body.first;
-        const last = req.body.last;
-        const email = req.body.email;
+        const first = req.sanitize(req.body.first);
+        const last = req.sanitize(req.body.last);
+        const email = req.sanitize(req.body.email);
 
         // stores hashed password in database
         bcrypt.hash(plainPassword, saltRounds, function(err, hashedPassword){

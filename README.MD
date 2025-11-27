@@ -9,6 +9,8 @@ Created a .env file and stored my database credentials that was stated in my cod
 
 Added access control to my adding books page and search books page so that if you want accsess to those things you have to register justv so that it feels more exclusive to users.
 
+I also added sanitization to my last name and username as they will be stored in my database and shown in the browser and I want to protect them from hackers who insert harmful HTML.
+
 To start this application locally you need to open up the terminal and input node index.js and the console should tell you its running on localhost:800 To view it on the virtual server/online just head over to my links file and click the links.
 
 
