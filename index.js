@@ -5,6 +5,7 @@ const path = require('path')
 var mysql = require('mysql2');
 require('dotenv').config();   // loading the env file
 var session = require('express-session')
+const expressSanitizer = require('express-sanitizer');
 
 // Create the express application object
 const app = express()
@@ -54,6 +55,8 @@ app.use(session({
         expires: 600000
     }
 }))
+
+app.use(expressSanitizer());
 
 // Start the web app listening
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
