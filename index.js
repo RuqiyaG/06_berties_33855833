@@ -26,13 +26,23 @@ app.locals.shopData = {shopName: "Bertie's Books"}
 const db = mysql.createPool({
     host: process.env.BB_HOST,
     user: process.env.BB_USER,
-    password: BB_PASSWORD,
-    database: BB_DATABASE,
+    password: process.env.BB_PASSWORD,
+    database: process.env.BB_DATABASE,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
 });
 global.db = db
+
+//creating session
+app.use(session({
+    secret: 'somerandomstuff',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
+}))
 
 // Load the route handlers
 const mainRoutes = require("./routes/main")
@@ -45,16 +55,6 @@ app.use('/users', usersRoutes)
 // Load the route handlers for /books
 const booksRoutes = require('./routes/books')
 app.use('/books', booksRoutes)
-
-//creating session
-app.use(session({
-    secret: 'somerandomstuff',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        expires: 600000
-    }
-}))
 
 app.use(expressSanitizer());
 
