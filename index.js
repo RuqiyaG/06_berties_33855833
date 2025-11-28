@@ -1,10 +1,10 @@
-// Import express, ejs, sql, express session
+// Import express, ejs, sql, express session and sanitizer
 var express = require ('express')
 var ejs = require('ejs')
 const path = require('path')
 var mysql = require('mysql2');
 require('dotenv').config();   // loading the env file
-var session = require('express-session')
+var session = require('express-session') 
 const expressSanitizer = require('express-sanitizer');
 
 // Create the express application object
@@ -44,6 +44,9 @@ app.use(session({
     }
 }))
 
+//making sanitizer available to use
+app.use(expressSanitizer());
+
 // Load the route handlers
 const mainRoutes = require("./routes/main")
 app.use('/', mainRoutes)
@@ -55,8 +58,6 @@ app.use('/users', usersRoutes)
 // Load the route handlers for /books
 const booksRoutes = require('./routes/books')
 app.use('/books', booksRoutes)
-
-app.use(expressSanitizer());
 
 // Start the web app listening
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
