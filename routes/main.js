@@ -31,7 +31,7 @@ router.get('/logout', redirectLogin, (req, res) => {
 })
 
 router.get('/weather', function(req, res, next){
-    let apiKey = '' // my api will be active in a couple hours check back
+    let apiKey = '7c8b4261d015d7bd4f3ba8f9f9968a82' // my api will be active in a couple hours check back
     let city = 'london'
     let url = `http:api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
 
