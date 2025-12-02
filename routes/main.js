@@ -42,8 +42,10 @@ router.get('/weather', function(req, res, next){
             //res.send(body)
             var weather = JSON.parse(body)
             if(weather!==undefined && weather.main!==undefined) {
-            var wmsg = 'It is' + ' ' + weather.main.temp + ' ' + 'degrees in' + ' ' + weather.name + "! <br> The humidity now is"+ ' ' + weather.main.humidity;
-            res.send(wmsg);
+               var wmsg = 'It is' + ' ' + weather.main.temp + ' ' + 'degrees in' + ' ' + weather.name + "! <br> The humidity now is"+ ' ' + weather.main.humidity;
+               res.send(wmsg);
+            } else {
+                res.send('No data found');
             }
         } 
         
