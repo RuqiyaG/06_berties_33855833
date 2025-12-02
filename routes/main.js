@@ -1,6 +1,7 @@
 // Create a new router
 const express = require("express")
 const router = express.Router()
+const request = require('request')
 
 // redirects to log in page
 const redirectLogin = (req, res, next) => {
@@ -27,6 +28,24 @@ router.get('/logout', redirectLogin, (req, res) => {
         }
         res.send(`You are logged out. <a href='/'>Home</a>`)
     })
+})
+
+router.get('/weather', function(req, res, next){
+    let apiKey = '' // my api will be active in a couple hours check back
+    let city = 'london'
+    let url = `http:api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+
+    request(url, function(err, response, body){
+        if(err){
+            next(err)
+        } else {
+            //res.send(body)
+            var weather = JSON.parse(body)
+            var wmsg = 'It is' + ' ' + weather.main.temp + 'degrees' + weather.name + "! <br> The humidity now is" + weather.main.humidity;
+            res.send(wmsg);
+        }
+    });
+
 })
 
 // Export the router object so index.js can access it
